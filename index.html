@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>vue2</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="(time, index) in times">
+          {{index+1}} {{time.nome}} <img :src="time.escudo">
+        </li>
+      </ul>
+    </div>
+    <script src="/dist/build.js"></script>
+  </body>
+</html>
