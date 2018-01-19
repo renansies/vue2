@@ -1,11 +1,7 @@
 import Vue from 'vue'
 import {Time} from './time';
 
-<<<<<<< HEAD
 require('style-loader!css-loader!bootstrap/dist/css/bootstrap.min.css');
-=======
-require('style-loader!css-loader!bootstrap/dist/css/bootstrap.css');
->>>>>>> 1cba090b7e68508228b3b32fbd3268e00ca743f1
 require('bootstrap');
 
 new Vue({
@@ -16,7 +12,6 @@ new Vue({
       new Time("Atlético MG", require('./assets/atletico_mg_60x60.png')),
       new Time("Atlético PR", require('./assets/atletico_pr_60x60.png')),
       new Time("Botafogo", require('./assets/botafogo_60x60.png')),
-<<<<<<< HEAD
       new Time("Chapecoense", require('./assets/chapecoense_60x60.png')),
       new Time("Corinthians", require('./assets/corinthians_60x60.png')),
       new Time("Coritiba", require('./assets/coritiba_60x60.png')),
@@ -43,7 +38,8 @@ new Vue({
         time: null,
         gols: 0
       }
-    }
+    },
+    teste: 0
   },
   created() {
     let indexCasa = Math.floor(Math.random() * 20), 
@@ -53,12 +49,13 @@ new Vue({
     this.novoJogo.casa.gols = 0;
     this.novoJogo.fora.time = this.times[indexFora];
     this.novoJogo.fora.gols = 0;
+  },
+  methods: {
+    fimJogo() {
+      let timeAdversario = this.novoJogo.fora.time;
+      let gols = +this.novoJogo.casa.gols;
+      let golsAdversario = +this.novoJogo.fora.gols;
+      this.novoJogo.casa.time.fimJogo(timeAdversario, gols, golsAdversario);
+    }
   }
 });
-
-=======
-      new Time("Chapecoense", require('./assets/chapecoense_60x60.png'))
-    ]
-  }
-})
->>>>>>> 1cba090b7e68508228b3b32fbd3268e00ca743f1
