@@ -12,11 +12,7 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>Time</th>
-              <th>Pontos</th>
-              <th>GM</th>
-              <th>GS</th>
-              <th>Saldo</th>
+              <th v-for="coluna in colunas">{{coluna | ucwords}}</th>
             </tr>
           </thead>
           <tbody>
@@ -28,7 +24,7 @@
               <td>{{time.pontos}}</td>
               <td>{{time.gm}}</td>
               <td>{{time.gs}}</td>
-              <td>saldo</td>
+              <td>{{time | saldo}}</td>
             </tr>
           </tbody>
         </table>

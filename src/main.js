@@ -7,6 +7,7 @@ require('bootstrap');
 new Vue({
   el: '#app',
   data: {
+    colunas: ['nome', 'pontos', 'gm', 'gs', 'saldo'],
     times: [
       new Time("América MG", require('./assets/america_mg_60x60.png')),
       new Time("Atlético MG", require('./assets/atletico_mg_60x60.png')),
@@ -56,6 +57,14 @@ new Vue({
       let gols = +this.novoJogo.casa.gols;
       let golsAdversario = +this.novoJogo.fora.gols;
       this.novoJogo.casa.time.fimJogo(timeAdversario, gols, golsAdversario);
+    }
+  },
+  filters: {
+    saldo(time) {
+      return time.gm - time.gs;
+    },
+    ucwords(value) {
+      return value.charAt(0).toUpperCase() + value.slice(1);
     }
   }
 });
