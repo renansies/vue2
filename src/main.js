@@ -1,5 +1,6 @@
 import Vue from 'vue'
-import {Time} from './time';
+import {Time} from './time'
+import _ from 'lodash';
 
 require('style-loader!css-loader!bootstrap/dist/css/bootstrap.min.css');
 require('bootstrap');
@@ -7,6 +8,10 @@ require('bootstrap');
 new Vue({
   el: '#app',
   data: {
+    order: {
+      keys: ['pontos', 'gm', 'gs'],
+      sort: ['desc', 'desc', 'asc']
+    },
     colunas: ['nome', 'pontos', 'gm', 'gs', 'saldo'],
     times: [
       new Time("América MG", require('./assets/america_mg_60x60.png')),
@@ -62,6 +67,15 @@ new Vue({
     },
     showView(view){
       this.view = view;
+    },
+    orderBy(coluna){
+      this.order.keys = coluna;
+      this.order.sort = this.order.sort == 'desc' ? 'asc': 'desc';
+    }
+  },
+  computed: {
+    timesFiltered() {
+      return _.orderBy(this.times, this.order.keys, this.order.sort);
     }
   },
   filters: {
