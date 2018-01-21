@@ -78,7 +78,7 @@ new Vue({
     timesFiltered() {
       let colecao = _.orderBy(this.times, this.order.keys, this.order.sort);
       return _.filter(colecao, item => { 
-        return item.nome.indexOf(this.filter) >= 0;
+        return item.nome.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0;
       });
     }
   },
