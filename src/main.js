@@ -12,6 +12,7 @@ new Vue({
       keys: ['pontos', 'gm', 'gs'],
       sort: ['desc', 'desc', 'asc']
     },
+    filter: '',
     colunas: ['nome', 'pontos', 'gm', 'gs', 'saldo'],
     times: [
       new Time("América MG", require('./assets/america_mg_60x60.png')),
@@ -75,7 +76,10 @@ new Vue({
   },
   computed: {
     timesFiltered() {
-      return _.orderBy(this.times, this.order.keys, this.order.sort);
+      let colecao = _.orderBy(this.times, this.order.keys, this.order.sort);
+      return _.filter(colecao, item => { 
+        return item.nome.indexOf(this.filter) >= 0;
+      });
     }
   },
   filters: {
