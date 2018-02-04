@@ -81,11 +81,14 @@ export default {
         this.novoJogo.casa.gols = 0;
         this.novoJogo.fora.time = this.times[indexFora];
         this.novoJogo.fora.gols = 0;
-        this.showView('novojogo');
+        this.showView('novoJogo');
       },
       orderBy(coluna){
         this.order.keys = coluna;
         this.order.sort = this.order.sort == 'desc' ? 'asc': 'desc';
+      },
+      showView(view){
+        this.view = view;
       }
     },
     computed: {

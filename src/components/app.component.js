@@ -1,42 +1,27 @@
 import TimeListComponent from './time-list.component';
+import TimeJogoComponent from './time-jogo.component'; 
 
 export default {
   components: {
-    'time-list': TimeListComponent
+    'time-list': TimeListComponent,
+    'time-jogo': TimeJogoComponent
   },
   template: 
-  `<div class="container">
- <div class="row">
-  <h3>Campeonato Brasileiro - Série A - 2016</h3>
-  <div v-if="view == 'tabela'">
-    <time-list></time-list>
-  </div>
-  <div v-if="view == 'novojogo'">
-    <form class="form-inline">
-      <div class="form-group">
-        <input type="text" class="form-control" v-model="novoJogo.casa.gols" @keyup.enter="fimJogo">
-        <label class="control-label">
-          {{novoJogo.casa.time.nome}}
-          <img :src="novoJogo.casa.time.escudo" style="height: 30px; width: 30px;">
-        </label>
+  ` <div class="container">
+      <div class="row">
+        <h3>Campeonato Brasileiro - Série A - 2016</h3>
+        <div v-if="view == 'tabela'">
+          <time-list></time-list>
+        </div>
+        <div v-if="view == 'novoJogo'">
+          <time-jogo></time-jogo>
+        </div>
       </div>
-      <span>X</span>
-      <div class="form-group">
-        <label class="control-label">
-          <img :src="novoJogo.fora.time.escudo" style="height: 30px; width: 30px;">
-          {{novoJogo.fora.time.nome}}
-        </label>
-        <input type="text" class="form-control" v-model="novoJogo.fora.gols" @keyup.enter="fimJogo">
-      </div>
-      <button type="button" class="btn btn-primary" @click="fimJogo" >Fim de Jogo</button>
-    </form>
-  </div>
-</div>
-</div>`
+    </div>`
     ,
     data() {
       return {  
-        view: 'tabela'
+        view: 'novoJogo'
       }
     },
     methods: {
