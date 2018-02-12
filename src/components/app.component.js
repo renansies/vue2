@@ -1,6 +1,6 @@
 import TimeListComponent from './time-list.component';
 import TimeJogoComponent from './time-jogo.component'; 
-import event from '../event';
+import store from '../store';
 
 export default {
   components: {
@@ -20,17 +20,9 @@ export default {
       </div>
     </div>`
     ,
-    mounted() {
-      event.$on('show-time-list', () => {
-        this.view = 'tabela';
-      });
-      event.$on('show-time-jogo', () => {
-        this.view = 'novoJogo';
-      });
-    },
-    data() {
-      return {  
-        view: 'tabela'
+    computed: {
+      view(){
+        return store.state.view;
       }
     },
     methods: {
