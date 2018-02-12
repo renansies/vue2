@@ -1,3 +1,5 @@
+import event from '../event';
+
 export default {
   template: 
   ` <div>
@@ -21,6 +23,11 @@ export default {
         </form>
     </div>`
     ,
+    mounted() {
+        event.$on('get-times', (times) => {
+            this.initJogo(times);
+        });
+    },
     data() {
         return { 
             novoJogo: {
@@ -36,15 +43,21 @@ export default {
         }
     },
     methods: {
-      fimJogo() {
-        let timeAdversario = this.novoJogo.fora.time;
-        let gols = +this.novoJogo.casa.gols;
-        let golsAdversario = +this.novoJogo.fora.gols;
-        this.novoJogo.casa.time.fimJogo(timeAdversario, gols, golsAdversario);
-        this.showView('tabela');
-      },
-      showView(view){
-        this.view = view;
-      }
+        initJogo(times){
+            let indexCasa = Math.floor(Math.random() * 20), 
+                indexFora = Math.floor(Math.random() * 20);
+      
+            this.novoJogo.casa.time = times[indexCasa];
+            this.novoJogo.casa.gols = 0;
+            this.novoJogo.fora.time = times[indexFora];
+            this.novoJogo.fora.gols = 0;
+          },
+        fimJogo() {
+            let timeAdversario = this.novoJogo.fora.time;
+            let gols = +this.novoJogo.casa.gols;
+            let golsAdversario = +this.novoJogo.fora.gols;
+            this.novoJogo.casa.time.fimJogo(timeAdversario, gols, golsAdversario);
+            event.$emit('show-time-list');
+        }
     }    
-  };
+};

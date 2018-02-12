@@ -1,10 +1,11 @@
 import {Time} from '../time';
 import _ from 'lodash';
+import event from '../event';
 
 export default {
     template:  
   ` <div>
-        <a class="btn btn-primary" @click="createNovoJogo()">Novo Jogo</a>
+        <a class="btn btn-primary" @click="showNovoJogo()">Novo Jogo</a>
         <br /><br />
         <input type="text" class="form-control" v-model="filter">
         <table class="table table-striped">
@@ -73,22 +74,13 @@ export default {
       }
     },
     methods: {
-      createNovoJogo(){
-        let indexCasa = Math.floor(Math.random() * 20), 
-          indexFora = Math.floor(Math.random() * 20);
-  
-        this.novoJogo.casa.time = this.times[indexCasa];
-        this.novoJogo.casa.gols = 0;
-        this.novoJogo.fora.time = this.times[indexFora];
-        this.novoJogo.fora.gols = 0;
-        this.showView('novoJogo');
+      showNovoJogo(){    
+        event.$emit('show-time-jogo');
+        event.$emit('get-times',this.times);
       },
       orderBy(coluna){
         this.order.keys = coluna;
         this.order.sort = this.order.sort == 'desc' ? 'asc': 'desc';
-      },
-      showView(view){
-        this.view = view;
       }
     },
     computed: {
