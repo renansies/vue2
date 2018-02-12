@@ -51,9 +51,12 @@ export default {
       }
     },
     methods: {
-      orderBy(coluna){
+      orderBy(coluna) {
         this.order.keys = coluna;
         this.order.sort = this.order.sort == 'desc' ? 'asc': 'desc';
+      },
+      showNovoJogo() {
+        this.$store.commit('show-time-jogo');
       }
     },
     computed: {
