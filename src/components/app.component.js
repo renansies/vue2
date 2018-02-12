@@ -11,10 +11,12 @@ export default {
   ` <div class="container">
       <div class="row">
         <h3>Campeonato Brasileiro - Série A - 2016</h3>
+        <a class="btn btn-primary" @click="showNovoJogo()">Novo Jogo</a>
+        <br /><br />
         <div v-show="view == 'tabela'">
           <time-list></time-list>
         </div>
-        <div v-show="view == 'novoJogo'">
+        <div v-if="view == 'novoJogo'">
           <time-jogo></time-jogo>
         </div>
       </div>
@@ -23,6 +25,11 @@ export default {
     computed: {
       view(){
         return this.$store.state.view;
+      }
+    },
+    methods: {
+      showNovoJogo() {
+        this.$store.commit('show-time-jogo');
       }
     }
   };
